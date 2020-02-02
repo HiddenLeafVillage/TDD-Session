@@ -1,0 +1,65 @@
+- What is automated testing
+
+- Why we need automated Testing
+ - Reduce debugging time
+ - Serves as a documentation
+ - Helps to improve design
+
+- Misconceptions
+ - It is hard
+ - More time consuming
+
+- Unit testing
+
+- JUnit 5
+
+- Platform
+ - junit-platform-console
+ - junit-platform-engine
+ - junit-platform-launcher
+ - junit-platform-runner
+ - junit-platform-gradle-plugin
+ - junit-platofrm-surefire-provider
+
+- Jupiter
+ - junit-jupiter-api
+ - junit-jupiter-engine
+ - junit-jupiter-params
+ - junit-jupiter-migrationsupport
+
+- Vinatge
+ - junit-vintage-engine
+
+- Phases of Test
+ - Fixure Setup
+ - Execute
+ - Assert/Verify
+ - Tear Down
+
+- Lifecycle Methods
+ - Per Method
+ - Per Class
+
+ - Methods to change the lifecycle
+   - @TestInstance(PER_METHOD/PER_CLASS)
+   - Djunit.jupiter.testinstance.lifecycle.default=per_method/per_class
+   - junit.jupiter.testinstance.lifecycle.default=per_methos/per_class
+
+- Annotations
+ - @Test
+ - @Display
+ - @assertTrue()
+ - @assertFalse()
+ - @assertEquals()
+ - @assertNull()
+ - @assertNotNull()
+ - @assertThrows()
+ - @assertAll()
+ - @assertTimeout()
+ - @assertTimeoutPreemptively()
+ - @Disable()
+ - @assumeThat()
+ - @RepeatedTest()
+
+
+
