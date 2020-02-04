@@ -1,0 +1,17 @@
+{
+	"id": "f236e103-3a05-4d68-a043-83c8c776180e",
+	"name":"Dhoni",
+	"age":"30",
+	"careerStatistics" : {
+		"id" : "f236e103-3a05-4d68-a043-83c8c776180a",
+		"matches" : "120",
+		"runsScored": "8000",
+		"strikeRate": "120.50",
+		"wickets" : "1",
+		"ballsBowled" : "10"
+	},
+	"team" : {
+		"id" : "a236e103-3a05-4d68-a043-83c8c776180e",
+		"name" : "CSK"
+	}
+}

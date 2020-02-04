@@ -1,0 +1,33 @@
+- Mocking
+- Testing Cycle
+  - Fixure Setup
+  - Execute
+  - Assert/Verify
+  - Tear Down
+- Mockito works in first 3 steps
+- Method Stubbing
+  - When-Then Pattern
+- Mockito.when() returns OngoingStub<T>
+  - thenReturn()
+  - thenThrow()
+  - thenCallRealMethod()
+  - thenAnswer()
+- Mocking void methods
+  - do when pattern
+- Verification
+  - verify
+  - VerificationMode
+    - times(n)
+    - atleastOnce()
+    - atleast(n)
+    - atMost(n)
+    - never()
+- Argument Matching
+    - Problem with implicit matching
+    - Matchers.eq()
+    - Matchers.anyInt()
+    - Matchers.anyDouble()
+    - Matchers.anySetOf(Class<T> clazz)
+- Partial Mocks
+    - Mocks
+    - Spies
