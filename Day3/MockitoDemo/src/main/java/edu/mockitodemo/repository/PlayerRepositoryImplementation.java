@@ -7,4 +7,8 @@ public class PlayerRepositoryImplementation {
 		System.out.println("Invoking Real Method");
 		return new Player();
 	}
+	
+	public String getName() {
+		return "";
+	}
 }

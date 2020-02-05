@@ -1,5 +1,6 @@
 package edu.mockitodemo.model;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class CareerStatistics {
@@ -71,6 +72,26 @@ public class CareerStatistics {
 
 	public void setBallsBowled(int ballsBowled) {
 		this.ballsBowled = ballsBowled;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(ballsBowled, id, matches, runsScored, strikeRate, wickets);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CareerStatistics other = (CareerStatistics) obj;
+		return ballsBowled == other.ballsBowled && Objects.equals(id, other.id) && matches == other.matches
+				&& runsScored == other.runsScored
+				&& Double.doubleToLongBits(strikeRate) == Double.doubleToLongBits(other.strikeRate)
+				&& wickets == other.wickets;
 	}
 
 	@Override

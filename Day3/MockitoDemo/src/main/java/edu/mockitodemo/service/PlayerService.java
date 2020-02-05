@@ -36,4 +36,13 @@ public class PlayerService {
 	public List<Player> getPlayers(String team) {
 		return repository.findByTeam(team);
 	}
+	
+	public String getName() {
+		return repoImpl.getName() + repoImpl.getName();
+	}
+	
+	public void save(Player player) {
+		player.setActive(true);
+		repository.save(player);
+	}
 }

@@ -1,5 +1,6 @@
 package edu.mockitodemo.model;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Team {
@@ -30,6 +31,23 @@ public class Team {
 
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, teamName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Team other = (Team) obj;
+		return Objects.equals(id, other.id) && Objects.equals(teamName, other.teamName);
 	}
 
 	@Override

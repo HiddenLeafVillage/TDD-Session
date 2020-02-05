@@ -2,7 +2,11 @@ package edu.mockitodemo.test;
 
 import static java.util.Optional.of;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
 import java.util.UUID;
 
@@ -10,13 +14,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.mockito.ArgumentCaptor;
+import org.mockito.ArgumentMatchers;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.internal.verification.VerificationModeFactory;
-import org.mockito.verification.VerificationMode;
 
+import edu.mockitodemo.argumentmatchers.PlayerMatcher;
 import edu.mockitodemo.exceptions.PlayerNotFoundException;
 import edu.mockitodemo.model.CareerStatistics;
 import edu.mockitodemo.model.Player;
@@ -37,6 +44,9 @@ public class PlayerServiceTest {
 	
 	@InjectMocks
 	PlayerService service;
+	
+	@Captor
+	ArgumentCaptor<Player> argCaptor;
 	
 	@BeforeEach
 	void setup() {
@@ -90,7 +100,7 @@ public class PlayerServiceTest {
 	@ParameterizedTest
     @JsonFileSource(resources = "/player.json")
 	void testVoidMethod(@JsonToPlayer Player player) {
-		Mockito.doNothing().when(repository).save(player);
+		doNothing().when(repository).save(player);
 		service.savePlayer(player);
 		Mockito.verify(repository).save(player);
 	}
@@ -98,18 +108,37 @@ public class PlayerServiceTest {
 	@ParameterizedTest
     @JsonFileSource(resources = "/player.json")
 	void testThenReturnVerification(@JsonToPlayer Player player) {
-		Mockito.when(repository.findByName("Dhoni")).thenReturn(of(player));
+		when(repository.findByName("Dhoni")).thenReturn(of(player));
 		Player retrivedPlayer = service.getPlayer("Dhoni");
 		Mockito.verify(repository, VerificationModeFactory.atLeastOnce()).findByName("Dhoni");
 		assertEquals(player, retrivedPlayer);
 	}
 	
+	@Test
+	void consecutiveStubbing() {
+		when(repoImpl.getName()).thenReturn("M.S.").thenReturn("Dhoni");
+		String name = service.getName();
+		assertEquals("M.S.Dhoni", name);
+	}
+	
+	@ParameterizedTest
+    @JsonFileSource(resources = "/player.json")
+	void testArgumentCaptor(@JsonToPlayer Player player) {
+		doNothing().when(repository).save(player);
+		assertFalse(player.isActive());
+		service.save(player);
+		Mockito.verify(repository).save(argCaptor.capture());
+		assertTrue(argCaptor.getValue().isActive());
+	}
 	
 	
-	
-	
-	
-	
+	@Test
+	void customArgumentMatchers() {
+		Player player = new Player(UUID.randomUUID(), "Dhoni", 30, null, null);
+		Mockito.doNothing().when(repository).save(ArgumentMatchers.argThat(new PlayerMatcher(player)));
+		service.savePlayer(player);
+		Mockito.verify(repository).save(player);
+	}
 	
 	
 	

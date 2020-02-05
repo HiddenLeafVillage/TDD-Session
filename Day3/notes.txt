@@ -12,10 +12,11 @@
   - thenThrow()
   - thenCallRealMethod()
   - thenAnswer()
+- Stubbing Consecutive Calls
 - Mocking void methods
   - do when pattern
 - Verification
-  - verify
+  - verify()
   - VerificationMode
     - times(n)
     - atleastOnce()
@@ -28,6 +29,7 @@
     - Matchers.anyInt()
     - Matchers.anyDouble()
     - Matchers.anySetOf(Class<T> clazz)
+- Argument Captors
 - Partial Mocks
     - Mocks
     - Spies
